@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://.thymeleaf.org"
+      xmlns="http://www.w3.org/1999/html">
+<head>
+    <meta charset="UTF-8">
+    <title>Edit</title>
+</head>
+<body>
+<form th:method="POST" th:action="@{/admin/users/delete/{id}(id=${user.getId()})}" th:object="${user}">
+    <p>  DELETE </p>
+    <label for="firstName"> Enter Username </label>
+    <input type="text" th:field="*{firstName}" required id="firstName"/>
+    <br/>
+    <label for="lastName"> Enter Surname </label>
+    <input type="text" th:field="*{lastName}" required id="lastName"/>
+    <br/>
+    <label for="age"> Enter Age </label>
+    <input type="text" th:field="*{age}"  required id="age"/>
+    <br/>
+    <label for="username"> Enter E-mail </label>
+    <input type="text" th:field="*{username}" required id="username"/>
+    <br/>
+    <label for="password"> Enter Password </label>
+    <input type="text" th:field="*{password}" required id="password"/>
+    <p>  Select roles:
+    <td>
+        <th:block th:each="role : ${rolesList}">
+            <input type="checkbox" name="rolesIdArr"  th:value="${role.id}"/>
+            <label th:text="${role.roleName}"></label>
+        </th:block>
+    </td>
+    <p>
+    <hr/>
+    <input type="submit" value="DELETE!"/>
+    <hr/>
+    <a href="/admin/users">Back to List</a>
+    <br/>
+    <a th:href="@{/logout}">Logout</a>
+</form>
+
+</body>
+</html>
